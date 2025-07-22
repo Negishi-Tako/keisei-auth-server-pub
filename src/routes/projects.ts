@@ -1,5 +1,10 @@
 import { Hono } from 'hono'
 import { requireLogin } from '../middleware';
+import { db } from '../db';
+import { blobService } from '../blob-service';
+import { DatabaseError } from '../types';
+
+const route_projects = new Hono();
 
 async function get_projects(project_ids: number[] | null) {
     try {

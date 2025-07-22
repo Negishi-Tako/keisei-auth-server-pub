@@ -1,5 +1,12 @@
 import { Hono } from 'hono'
 import { requireLogin } from '../middleware';
+import { db } from '../db';
+import * as sql from 'mssql';
+import * as jwt from 'jsonwebtoken';
+import { getCookie } from 'hono/cookie';
+import { DatabaseError } from '../types';
+
+const route_tickets = new Hono();
 
 async function get_session_info(session_id: string) {
     try {
